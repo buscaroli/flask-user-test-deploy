@@ -32,5 +32,18 @@ def user_handler(id):
         return jsonify(resp), code
 # else catch-all not required as flask sends a' Method Not Allowed' by default
 
+
+@app.errorhandler(NotFound)
+def handle_404(err):
+    return {'message': f'Oops! {err}'}, 404
+
+@app.errorhandler(BadRequest)
+def handle_400(err):
+    return {'message': f'Oops! {err}'}, 400
+
+@app.errorhandler(InternalServerError)
+def handle_500(err):
+    return {'message': f"It's not you, it's us"}, 500
+
 if __name__ == "__main__":
     app.run()

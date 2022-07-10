@@ -26,8 +26,6 @@ def delete(id):
 def update(req, id):
     user = find_by_id(id)
     data = req.get_json()
-    print("*"*10)
-    print(data)
     for key, val in data.items():
         user[key] = val
     return user, 200
