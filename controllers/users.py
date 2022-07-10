@@ -11,15 +11,21 @@ def all(req):
 
 def create(req):
     user = req.get_json()
-    print(f"user id {user}")
     user['id'] = (users[-1]['id']) + 1
     users.append(user)
     return user, 201
 
-def show(req, id):
+def show(id):
     return find_by_id(id), 200
 
-
+def delete(id):
+    print(f"id is {id}")
+    try:
+        user = find_by_id(id)
+        users.remove(user)
+        return user, 204
+    except:
+        raise BadRequest(f"User with id {id} not found.")
 
 def find_by_id(id):
     try:
