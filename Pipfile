@@ -18,3 +18,4 @@ python_version = "3.9"
 [scripts]
 start = "gunicorn app:app"
 dev = "bash -c \"export FLASK_DEBUG=1 && export FLASK_ENV='development' && FLASK_APP=app.py && flask run\" "
+test = "pytest ./tests"

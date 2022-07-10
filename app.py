@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return f"Hello and Welcome!"
+    return jsonify({"message": "Hello and Welcome!"}), 200
 
 @app.route('/api/users', methods=['GET', 'POST'])
 def users_handler():
