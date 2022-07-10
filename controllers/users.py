@@ -19,13 +19,18 @@ def show(id):
     return find_by_id(id), 200
 
 def delete(id):
-    print(f"id is {id}")
-    try:
-        user = find_by_id(id)
-        users.remove(user)
-        return user, 204
-    except:
-        raise BadRequest(f"User with id {id} not found.")
+    user = find_by_id(id)
+    users.remove(user)
+    return user, 204
+
+def update(req, id):
+    user = find_by_id(id)
+    data = req.get_json()
+    print("*"*10)
+    print(data)
+    for key, val in data.items():
+        user[key] = val
+    return user, 200
 
 def find_by_id(id):
     try:

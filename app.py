@@ -19,18 +19,18 @@ def users_handler():
         resp, code = users.create(request)
         return jsonify(resp), code
 
-@app.route('/api/users/<int:id>', methods=['GET', 'POST', 'DELETE', 'PATCH'])
+@app.route('/api/users/<int:id>', methods=['GET', 'DELETE', 'PATCH'])
 def user_handler(id):
     if request.method == 'GET':
         resp, code = users.show(id)
         return jsonify(resp), code
-    elif request.method == 'POST':
-        pass 
     elif request.method == 'DELETE':
         resp, code = users.delete(id)
         return jsonify(resp), code
     elif request.method == 'PATCH':
-        pass 
+        resp, code = users.update(request, id)
+        return jsonify(resp), code
+# else catch-all not required as flask sends a' Method Not Allowed' by default
 
 if __name__ == "__main__":
     app.run()
